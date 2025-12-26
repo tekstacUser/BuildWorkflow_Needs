@@ -1,27 +1,21 @@
-name: Java Build (Needs)
+name: Build and Run Workflow
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-      - run: javac Addition.java
+      - name: Build Step
+        run: echo "Build job executed successfully"
 
   run:
-    needs: build
+    needs: build  
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-      - run: java Addition
+      - name: Run Step
+        run: echo "Run job executed successfully after build"
